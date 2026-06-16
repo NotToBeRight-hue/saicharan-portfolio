@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,99 +12,129 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* ---- ABOUT SECTION ---- */
+    #about .section-inner {
+      padding-bottom: var(--space-lg);
+    }
+
     .about-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
       align-items: start;
+      margin-top: var(--space-lg);
+    }
+    @media (min-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1.3fr 1fr;
+        gap: var(--space-2xl);
+      }
     }
 
     .about-text p {
-      color: var(--muted);
-      line-height: 1.85;
-      font-size: .95rem;
-      margin-bottom: 1.25rem;
+      color: var(--text-sub);
+      line-height: 1.9;
+      font-size: var(--fs-base);
+      margin-bottom: var(--space-md);
     }
+    .about-text strong { color: var(--text); font-weight: 600; }
 
-    .about-text strong { color: var(--text); }
-
+    /* EDU CARD */
     .edu-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      margin-top: 2rem;
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
     }
+    .edu-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .edu-card:hover { border-color: var(--accent-border); box-shadow: var(--shadow-md); }
 
     .edu-card h3 {
-      font-size: 1rem;
+      font-size: var(--fs-base);
       font-weight: 600;
       color: var(--accent);
-      margin-bottom: .25rem;
+      margin-bottom: var(--space-xs);
     }
-
     .edu-card p {
-      font-size: .85rem;
+      font-size: var(--fs-sm);
       color: var(--muted);
       margin: 0;
+      line-height: 1.6;
     }
-
     .edu-card .cgpa {
       font-family: 'Space Mono', monospace;
-      font-size: 1.5rem;
+      font-size: var(--fs-2xl);
       font-weight: 700;
       color: var(--accent2);
-      margin-top: .75rem;
+      margin-top: var(--space-md);
+      display: block;
     }
 
+    /* STAT GRID */
     .stat-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: var(--space-sm);
     }
-
     .stat-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
       text-align: center;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
     }
-
+    .stat-card:hover {
+      border-color: var(--accent-border);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+    }
     .stat-num {
-      font-size: 2rem;
+      font-size: var(--fs-2xl);
       font-weight: 700;
       color: var(--accent);
       font-family: 'Space Mono', monospace;
       display: block;
     }
-
     .stat-label {
-      font-size: .72rem;
+      font-size: var(--fs-xs);
       color: var(--muted);
-      margin-top: .25rem;
-      letter-spacing: .06em;
+      margin-top: var(--space-xs);
+      letter-spacing: .08em;
       text-transform: uppercase;
       display: block;
     }
 
-    /* SKILLS */
-    #skills { border-top: 1px solid var(--border); }
+    /* ---- SKILLS SECTION ---- */
+    #skills {
+      border-top: 1px solid var(--border);
+    }
 
-    .skills-category { margin-bottom: 2.5rem; }
+    .skills-category {
+      margin-bottom: var(--space-xl);
+    }
 
     .skills-category h3 {
-      font-size: .75rem;
+      font-size: var(--fs-xs);
       font-family: 'Space Mono', monospace;
       color: var(--muted);
       letter-spacing: .15em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-md);
       display: flex;
       align-items: center;
-      gap: .75rem;
+      gap: var(--space-sm);
     }
-
     .skills-category h3::after {
       content: '';
       flex: 1;
@@ -115,101 +145,143 @@
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: .65rem;
+      gap: var(--space-sm);
     }
 
     .skill-pill {
-      padding: .45rem 1.1rem;
+      padding: .42rem 1rem;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: .82rem;
-      color: var(--text);
+      border-radius: var(--radius-pill);
+      font-size: var(--fs-sm);
+      color: var(--text-sub);
       font-family: 'Space Mono', monospace;
-      transition: border-color .2s, color .2s;
+      transition: border-color var(--transition-fast), color var(--transition-fast),
+                  background var(--transition-fast), transform var(--transition-fast),
+                  box-shadow var(--transition-fast);
       cursor: default;
     }
-
-    .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .skill-pill:hover {
+      border-color: var(--accent-border);
+      color: var(--accent);
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
     .skill-pill:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
 
-    .skill-pill.lang { border-color: rgba(124,110,245,.4); color: var(--accent); }
-    .skill-pill.fw   { border-color: rgba(79,209,197,.3); color: var(--accent2); }
-
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skill-pill.lang {
+      border-color: var(--accent-border);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+    .skill-pill.fw {
+      border-color: var(--accent2-border);
+      color: var(--accent2);
+      background: var(--accent2-light);
+    }
+    .skill-pill.lang:hover { background: rgba(var(--accent-rgb),.2); }
+    .skill-pill.fw:hover {
+      border-color: var(--accent2-border);
+      color: var(--accent2);
+      background: rgba(var(--accent2-rgb),.18);
     }
   </style>
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <nav role="navigation" aria-label="Main navigation">
     <a href="index.html" class="logo" aria-label="Saicharan S — Home">S.SAICHARAN</a>
-    <ul class="nav-links" role="list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" aria-current="page">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button id="nav-hamburger" class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html" aria-current="page">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
   <main id="main-content">
 
     <!-- ABOUT -->
     <section id="about" aria-labelledby="about-heading">
-      <span class="section-label">01 — About Me</span>
-      <div class="about-grid">
-        <div class="about-text">
-          <h1 class="section-title" id="about-heading">Who I Am</h1>
-          <p>
-            I'm <strong>Saicharan S</strong>, a B.Tech Computer Science &amp; Engineering student
-            at <strong>SRM Institute of Science and Technology, Ramapuram</strong> (Batch 2024–2028).
-            I'm a fresher passionate about building things that actually work and matter.
-          </p>
-          <p>
-            My primary focus is <strong>full-stack web development</strong> — from crafting
-            clean, accessible frontends to building robust Java backends that power real features.
-            I enjoy the entire journey from idea to deployed product.
-          </p>
-          <p>
-            Outside of code, I'm a <strong>horophile</strong> (yes, a watch nerd), love deep dives
-            into philosophy, and enjoy collaborative projects with friends. I believe good software
-            is as much about people as it is about code.
-          </p>
-          <p>
-            Currently open to <strong>internships and collaborations</strong> where I can apply
-            my skills and grow fast.
-          </p>
+      <div class="section-inner">
+        <span class="section-label reveal">01 — About Me</span>
 
-          <div class="edu-card" role="region" aria-label="Education details">
-            <h3>SRM Institute of Science and Technology</h3>
-            <p>B.Tech — Computer Science &amp; Engineering | Ramapuram, Chennai</p>
-            <p style="margin-top:.5rem; font-size:.8rem;">Batch 2024 – 2028</p>
-            <div class="cgpa" aria-label="CGPA: 8.71">8.71 CGPA</div>
+        <div class="about-grid">
+          <div class="about-text">
+            <h1 class="section-title reveal reveal-delay-1" id="about-heading">Who I Am</h1>
+            <p class="reveal reveal-delay-1">
+              I'm <strong>Saicharan S</strong>, a B.Tech Computer Science &amp; Engineering student
+              at <strong>SRM Institute of Science and Technology, Ramapuram</strong> (Batch 2024–2028).
+              I'm a fresher passionate about building things that actually work and matter.
+            </p>
+            <p class="reveal reveal-delay-2">
+              My primary focus is <strong>full-stack web development</strong> — from crafting
+              clean, accessible frontends to building robust Java backends that power real features.
+              I enjoy the entire journey from idea to deployed product.
+            </p>
+            <p class="reveal reveal-delay-2">
+              Outside of code, I'm a <strong>horophile</strong> (yes, a watch nerd), love deep dives
+              into philosophy, and enjoy collaborative projects with friends. I believe good software
+              is as much about people as it is about code.
+            </p>
+            <p class="reveal reveal-delay-3">
+              Currently open to <strong>internships and collaborations</strong> where I can apply
+              my skills and grow fast.
+            </p>
+
+            <div class="edu-card reveal reveal-delay-3" role="region" aria-label="Education details">
+              <h3>SRM Institute of Science and Technology</h3>
+              <p>B.Tech — Computer Science &amp; Engineering | Ramapuram, Chennai</p>
+              <p style="margin-top:var(--space-xs); font-size:var(--fs-xs);">Batch 2024 – 2028</p>
+              <span class="cgpa" aria-label="CGPA: 8.71">8.71 CGPA</span>
+            </div>
           </div>
-        </div>
 
-        <div>
-          <div class="stat-grid" role="list" aria-label="Key stats">
-            <div class="stat-card" role="listitem">
-              <span class="stat-num">8.71</span>
-              <span class="stat-label">CGPA</span>
-            </div>
-            <div class="stat-card" role="listitem">
-              <span class="stat-num">3</span>
-              <span class="stat-label">Projects Built</span>
-            </div>
-            <div class="stat-card" role="listitem">
-              <span class="stat-num">2028</span>
-              <span class="stat-label">Graduation</span>
-            </div>
-            <div class="stat-card" role="listitem">
-              <span class="stat-num">∞</span>
-              <span class="stat-label">Curiosity</span>
+          <div>
+            <div class="stat-grid reveal reveal-delay-2" role="list" aria-label="Key stats">
+              <div class="stat-card" role="listitem">
+                <span class="stat-num">8.71</span>
+                <span class="stat-label">CGPA</span>
+              </div>
+              <div class="stat-card" role="listitem">
+                <span class="stat-num">3</span>
+                <span class="stat-label">Projects Built</span>
+              </div>
+              <div class="stat-card" role="listitem">
+                <span class="stat-num">2028</span>
+                <span class="stat-label">Graduation</span>
+              </div>
+              <div class="stat-card" role="listitem">
+                <span class="stat-num">∞</span>
+                <span class="stat-label">Curiosity</span>
+              </div>
             </div>
           </div>
         </div>
@@ -218,49 +290,51 @@
 
     <!-- SKILLS -->
     <section id="skills" aria-labelledby="skills-heading">
-      <span class="section-label">02 — Tech Stack</span>
-      <h2 class="section-title" id="skills-heading">Skills &amp; Tools</h2>
+      <div class="section-inner">
+        <span class="section-label reveal">02 — Tech Stack</span>
+        <h2 class="section-title reveal reveal-delay-1" id="skills-heading">Skills &amp; Tools</h2>
 
-      <div class="skills-category">
-        <h3 id="langs-label">Languages</h3>
-        <div class="skills-grid" role="list" aria-labelledby="langs-label">
-          <span class="skill-pill lang" role="listitem" tabindex="0">Java</span>
-          <span class="skill-pill lang" role="listitem" tabindex="0">Python</span>
-          <span class="skill-pill lang" role="listitem" tabindex="0">C++</span>
-          <span class="skill-pill lang" role="listitem" tabindex="0">JavaScript</span>
-          <span class="skill-pill lang" role="listitem" tabindex="0">HTML5</span>
-          <span class="skill-pill lang" role="listitem" tabindex="0">CSS3</span>
-          <span class="skill-pill lang" role="listitem" tabindex="0">SQL</span>
+        <div class="skills-category reveal reveal-delay-2">
+          <h3 id="langs-label">Languages</h3>
+          <div class="skills-grid" role="list" aria-labelledby="langs-label">
+            <span class="skill-pill lang" role="listitem" tabindex="0">Java</span>
+            <span class="skill-pill lang" role="listitem" tabindex="0">Python</span>
+            <span class="skill-pill lang" role="listitem" tabindex="0">C++</span>
+            <span class="skill-pill lang" role="listitem" tabindex="0">JavaScript</span>
+            <span class="skill-pill lang" role="listitem" tabindex="0">HTML5</span>
+            <span class="skill-pill lang" role="listitem" tabindex="0">CSS3</span>
+            <span class="skill-pill lang" role="listitem" tabindex="0">SQL</span>
+          </div>
         </div>
-      </div>
 
-      <div class="skills-category">
-        <h3 id="fw-label">Frameworks &amp; Libraries</h3>
-        <div class="skills-grid" role="list" aria-labelledby="fw-label">
-          <span class="skill-pill fw" role="listitem" tabindex="0">Spring Boot</span>
-          <span class="skill-pill fw" role="listitem" tabindex="0">Java Servlets</span>
-          <span class="skill-pill fw" role="listitem" tabindex="0">JSP</span>
-          <span class="skill-pill fw" role="listitem" tabindex="0">REST APIs</span>
+        <div class="skills-category reveal reveal-delay-2">
+          <h3 id="fw-label">Frameworks &amp; Libraries</h3>
+          <div class="skills-grid" role="list" aria-labelledby="fw-label">
+            <span class="skill-pill fw" role="listitem" tabindex="0">Spring Boot</span>
+            <span class="skill-pill fw" role="listitem" tabindex="0">Java Servlets</span>
+            <span class="skill-pill fw" role="listitem" tabindex="0">JSP</span>
+            <span class="skill-pill fw" role="listitem" tabindex="0">REST APIs</span>
+          </div>
         </div>
-      </div>
 
-      <div class="skills-category">
-        <h3 id="db-label">Databases</h3>
-        <div class="skills-grid" role="list" aria-labelledby="db-label">
-          <span class="skill-pill" role="listitem" tabindex="0">MySQL</span>
-          <span class="skill-pill" role="listitem" tabindex="0">H2 Database</span>
-          <span class="skill-pill" role="listitem" tabindex="0">IndexedDB</span>
+        <div class="skills-category reveal reveal-delay-3">
+          <h3 id="db-label">Databases</h3>
+          <div class="skills-grid" role="list" aria-labelledby="db-label">
+            <span class="skill-pill" role="listitem" tabindex="0">MySQL</span>
+            <span class="skill-pill" role="listitem" tabindex="0">H2 Database</span>
+            <span class="skill-pill" role="listitem" tabindex="0">IndexedDB</span>
+          </div>
         </div>
-      </div>
 
-      <div class="skills-category">
-        <h3 id="tools-label">Tools &amp; Platforms</h3>
-        <div class="skills-grid" role="list" aria-labelledby="tools-label">
-          <span class="skill-pill" role="listitem" tabindex="0">Git</span>
-          <span class="skill-pill" role="listitem" tabindex="0">GitHub</span>
-          <span class="skill-pill" role="listitem" tabindex="0">Apache Tomcat</span>
-          <span class="skill-pill" role="listitem" tabindex="0">VS Code</span>
-          <span class="skill-pill" role="listitem" tabindex="0">IntelliJ IDEA</span>
+        <div class="skills-category reveal reveal-delay-3">
+          <h3 id="tools-label">Tools &amp; Platforms</h3>
+          <div class="skills-grid" role="list" aria-labelledby="tools-label">
+            <span class="skill-pill" role="listitem" tabindex="0">Git</span>
+            <span class="skill-pill" role="listitem" tabindex="0">GitHub</span>
+            <span class="skill-pill" role="listitem" tabindex="0">Apache Tomcat</span>
+            <span class="skill-pill" role="listitem" tabindex="0">VS Code</span>
+            <span class="skill-pill" role="listitem" tabindex="0">IntelliJ IDEA</span>
+          </div>
         </div>
       </div>
     </section>
@@ -270,5 +344,53 @@
   <footer role="contentinfo">
     <p>© 2026 Saicharan S &mdash; SRM Institute of Science and Technology</p>
   </footer>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const cur = document.documentElement.getAttribute('data-theme');
+        btn.setAttribute('aria-label', cur === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        btn.addEventListener('click', () => {
+          const c = document.documentElement.getAttribute('data-theme');
+          const n = c === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', n);
+          localStorage.setItem('theme', n);
+          btn.setAttribute('aria-label', n === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        });
+      }
+      const ham = document.getElementById('nav-hamburger');
+      const drawer = document.getElementById('nav-drawer');
+      if (ham && drawer) {
+        ham.addEventListener('click', () => {
+          const exp = ham.getAttribute('aria-expanded') === 'true';
+          ham.setAttribute('aria-expanded', String(!exp));
+          ham.setAttribute('aria-label', exp ? 'Open navigation' : 'Close navigation');
+          drawer.classList.toggle('is-open', !exp);
+        });
+        drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          ham.setAttribute('aria-expanded','false');
+          ham.setAttribute('aria-label','Open navigation');
+          drawer.classList.remove('is-open');
+        }));
+        document.addEventListener('click', e => {
+          if (!ham.contains(e.target) && !drawer.contains(e.target)) {
+            ham.setAttribute('aria-expanded','false');
+            ham.setAttribute('aria-label','Open navigation');
+            drawer.classList.remove('is-open');
+          }
+        });
+      }
+      const revealEls = document.querySelectorAll('.reveal');
+      if (revealEls.length && 'IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+        revealEls.forEach(el => obs.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+    })();
+  </script>
 </body>
 </html>

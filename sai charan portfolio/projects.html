@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,85 +12,91 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* ---- PROJECTS GRID ---- */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.75rem;
-      margin-top: 1rem;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    @media (min-width: 640px) {
+      .projects-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .projects-grid { gap: var(--space-lg); }
     }
 
+    /* PROJECT CARD */
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 2rem;
-      transition: border-color .3s, transform .3s;
+      padding: var(--space-lg);
+      transition: border-color var(--transition-base),
+                  box-shadow var(--transition-base),
+                  transform var(--transition-slow);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
-
     .project-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
       opacity: 0;
-      transition: opacity .3s;
+      transition: opacity var(--transition-base);
     }
-
     .project-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-5px);
+      border-color: var(--accent-border);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
     }
-
     .project-card:hover::before { opacity: 1; }
-
     .project-card:focus-within {
-      border-color: var(--accent);
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
+      border-color: var(--accent-border);
+      box-shadow: var(--shadow-md), 0 0 0 2px var(--accent);
     }
 
     .project-num {
       font-family: 'Space Mono', monospace;
-      font-size: .65rem;
+      font-size: var(--fs-xs);
       color: var(--muted);
       letter-spacing: .12em;
       text-transform: uppercase;
-      margin-bottom: 1.25rem;
+      margin-bottom: var(--space-md);
     }
 
     .project-name {
-      font-size: 1.3rem;
+      font-size: var(--fs-xl);
       font-weight: 700;
-      margin-bottom: .75rem;
+      margin-bottom: var(--space-sm);
       color: var(--text);
     }
 
     .project-desc {
-      font-size: .875rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
+      font-size: var(--fs-sm);
+      color: var(--text-sub);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
       flex: 1;
     }
 
     .project-highlights {
-      list-style: none;
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
     }
-
     .project-highlights li {
-      font-size: .82rem;
+      font-size: var(--fs-sm);
       color: var(--muted);
-      padding: .3rem 0;
-      padding-left: 1rem;
+      padding-left: 1.1rem;
       position: relative;
+      line-height: 1.6;
     }
-
     .project-highlights li::before {
       content: '→';
       position: absolute;
@@ -101,162 +107,185 @@
     .project-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: .5rem;
+      gap: var(--space-xs);
       margin-top: auto;
     }
-
     .stack-tag {
-      font-size: .7rem;
-      padding: .3rem .8rem;
-      background: rgba(124,110,245,.1);
+      font-size: var(--fs-xs);
+      padding: .28rem .8rem;
+      background: var(--accent-light);
       color: var(--accent);
-      border-radius: 100px;
+      border-radius: var(--radius-pill);
       font-family: 'Space Mono', monospace;
-      border: 1px solid rgba(124,110,245,.2);
+      border: 1px solid var(--accent-border);
+      letter-spacing: .02em;
     }
-
     .stack-tag.teal {
-      background: rgba(79,209,197,.1);
+      background: var(--accent2-light);
       color: var(--accent2);
-      border-color: rgba(79,209,197,.2);
+      border-color: var(--accent2-border);
     }
 
     .github-link {
       display: inline-flex;
       align-items: center;
-      gap: .5rem;
-      margin-top: 1.25rem;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
       padding: .5rem 1rem;
       background: transparent;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius-md);
       color: var(--muted);
-      text-decoration: none;
-      font-size: .8rem;
+      font-size: var(--fs-xs);
       font-family: 'Space Mono', monospace;
-      transition: border-color .2s, color .2s;
+      transition: border-color var(--transition-fast), color var(--transition-fast),
+                  background var(--transition-fast), transform var(--transition-fast);
     }
-
-    .github-link:hover { border-color: var(--accent); color: var(--accent); }
+    .github-link:hover {
+      border-color: var(--accent-border);
+      color: var(--accent);
+      background: var(--accent-light);
+      transform: translateX(3px);
+    }
     .github-link:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
-
     .github-link svg {
       width: 14px; height: 14px;
       fill: currentColor;
-    }
-
-    @media (max-width: 768px) {
-      .projects-grid { grid-template-columns: 1fr; }
+      flex-shrink: 0;
     }
   </style>
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <nav role="navigation" aria-label="Main navigation">
     <a href="index.html" class="logo" aria-label="Saicharan S — Home">S.SAICHARAN</a>
-    <ul class="nav-links" role="list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html" aria-current="page">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button id="nav-hamburger" class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html" aria-current="page">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
   <main id="main-content">
     <section id="projects" aria-labelledby="projects-heading">
-      <span class="section-label">03 — Projects</span>
-      <h1 class="section-title" id="projects-heading">What I've Built</h1>
+      <div class="section-inner">
+        <span class="section-label reveal">03 — Projects</span>
+        <h1 class="section-title reveal reveal-delay-1" id="projects-heading">What I've Built</h1>
 
-      <div class="projects-grid">
+        <div class="projects-grid">
 
-        <!-- PROJECT 1 -->
-        <article class="project-card" aria-labelledby="proj1-name">
-          <p class="project-num">01 &mdash; Full Stack Web App</p>
-          <h2 class="project-name" id="proj1-name">SmartBite</h2>
-          <p class="project-desc">
-            A smart canteen pre-ordering system that lets students browse the menu, place orders
-            in advance, and skip the queue. Built end-to-end from HTML frontend to Java Servlet
-            backend with a MySQL database.
-          </p>
-          <ul class="project-highlights" aria-label="Key features">
-            <li>Student login &amp; order management</li>
-            <li>Real-time menu browsing interface</li>
-            <li>Order history &amp; status tracking</li>
-            <li>Java Servlets + JSP server-side rendering</li>
-          </ul>
-          <div class="project-stack" aria-label="Technologies used">
-            <span class="stack-tag">HTML/CSS/JS</span>
-            <span class="stack-tag">Java Servlets</span>
-            <span class="stack-tag">JSP</span>
-            <span class="stack-tag">MySQL</span>
-            <span class="stack-tag">Apache Tomcat</span>
-          </div>
-          <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View SmartBite on GitHub (opens in new tab)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            View on GitHub
-          </a>
-        </article>
+          <!-- PROJECT 1: SmartBite -->
+          <article class="project-card reveal reveal-delay-1" aria-labelledby="proj1-name">
+            <p class="project-num">01 &mdash; Full Stack Web App</p>
+            <h2 class="project-name" id="proj1-name">SmartBite</h2>
+            <p class="project-desc">
+              A smart canteen pre-ordering system that lets students browse the menu, place orders
+              in advance, and skip the queue. Built end-to-end from HTML frontend to Java Servlet
+              backend with a MySQL database.
+            </p>
+            <ul class="project-highlights" aria-label="Key features">
+              <li>Student login &amp; order management</li>
+              <li>Real-time menu browsing interface</li>
+              <li>Order history &amp; status tracking</li>
+              <li>Java Servlets + JSP server-side rendering</li>
+            </ul>
+            <div class="project-stack" aria-label="Technologies used">
+              <span class="stack-tag">HTML/CSS/JS</span>
+              <span class="stack-tag">Java Servlets</span>
+              <span class="stack-tag">JSP</span>
+              <span class="stack-tag">MySQL</span>
+              <span class="stack-tag">Apache Tomcat</span>
+            </div>
+            <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View SmartBite on GitHub (opens in new tab)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </article>
 
-        <!-- PROJECT 2 -->
-        <article class="project-card" aria-labelledby="proj2-name">
-          <p class="project-num">02 &mdash; Game + AI Logic</p>
-          <h2 class="project-name" id="proj2-name">Word Chain Game</h2>
-          <p class="project-desc">
-            An interactive word-chain game where you face off against an AI opponent.
-            Features multiple difficulty levels, a persistent leaderboard, and a slick
-            retro terminal-inspired UI — all powered by a Spring Boot backend.
-          </p>
-          <ul class="project-highlights" aria-label="Key features">
-            <li>AI opponent with difficulty scaling</li>
-            <li>Persistent leaderboard via H2 database</li>
-            <li>Real-time turn-based game logic</li>
-            <li>Retro terminal aesthetic UI</li>
-          </ul>
-          <div class="project-stack" aria-label="Technologies used">
-            <span class="stack-tag teal">Spring Boot</span>
-            <span class="stack-tag teal">H2 Database</span>
-            <span class="stack-tag teal">REST API</span>
-            <span class="stack-tag">JavaScript</span>
-            <span class="stack-tag">CSS3</span>
-          </div>
-          <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View Word Chain Game on GitHub (opens in new tab)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            View on GitHub
-          </a>
-        </article>
+          <!-- PROJECT 2: Word Chain -->
+          <article class="project-card reveal reveal-delay-2" aria-labelledby="proj2-name">
+            <p class="project-num">02 &mdash; Game + AI Logic</p>
+            <h2 class="project-name" id="proj2-name">Word Chain Game</h2>
+            <p class="project-desc">
+              An interactive word-chain game where you face off against an AI opponent.
+              Features multiple difficulty levels, a persistent leaderboard, and a slick
+              retro terminal-inspired UI — all powered by a Spring Boot backend.
+            </p>
+            <ul class="project-highlights" aria-label="Key features">
+              <li>AI opponent with difficulty scaling</li>
+              <li>Persistent leaderboard via H2 database</li>
+              <li>Real-time turn-based game logic</li>
+              <li>Retro terminal aesthetic UI</li>
+            </ul>
+            <div class="project-stack" aria-label="Technologies used">
+              <span class="stack-tag teal">Spring Boot</span>
+              <span class="stack-tag teal">H2 Database</span>
+              <span class="stack-tag teal">REST API</span>
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">CSS3</span>
+            </div>
+            <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View Word Chain Game on GitHub (opens in new tab)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </article>
 
-        <!-- PROJECT 3 -->
-        <article class="project-card" aria-labelledby="proj3-name">
-          <p class="project-num">03 &mdash; Visualizer Tool</p>
-          <h2 class="project-name" id="proj3-name">Sorting Algorithm Visualizer</h2>
-          <p class="project-desc">
-            A self-contained visualizer for 6 classic sorting algorithms with live step-by-step
-            animations, time &amp; space complexity badges, and persistent session stats —
-            all packed into a single HTML file using IndexedDB.
-          </p>
-          <ul class="project-highlights" aria-label="Key features">
-            <li>Bubble, Selection, Insertion, Merge, Quick, Heap Sort</li>
-            <li>Live animated bar chart with color cues</li>
-            <li>Big-O complexity badges per algorithm</li>
-            <li>Persistent stats with IndexedDB</li>
-          </ul>
-          <div class="project-stack" aria-label="Technologies used">
-            <span class="stack-tag">HTML5</span>
-            <span class="stack-tag">CSS3</span>
-            <span class="stack-tag">JavaScript</span>
-            <span class="stack-tag">IndexedDB</span>
-            <span class="stack-tag">Canvas API</span>
-          </div>
-          <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View Sorting Visualizer on GitHub (opens in new tab)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            View on GitHub
-          </a>
-        </article>
+          <!-- PROJECT 3: Sorting Visualizer -->
+          <article class="project-card reveal reveal-delay-3" aria-labelledby="proj3-name">
+            <p class="project-num">03 &mdash; Visualizer Tool</p>
+            <h2 class="project-name" id="proj3-name">Sorting Algorithm Visualizer</h2>
+            <p class="project-desc">
+              A self-contained visualizer for 6 classic sorting algorithms with live step-by-step
+              animations, time &amp; space complexity badges, and persistent session stats —
+              all packed into a single HTML file using IndexedDB.
+            </p>
+            <ul class="project-highlights" aria-label="Key features">
+              <li>Bubble, Selection, Insertion, Merge, Quick, Heap Sort</li>
+              <li>Live animated bar chart with color cues</li>
+              <li>Big-O complexity badges per algorithm</li>
+              <li>Persistent stats with IndexedDB</li>
+            </ul>
+            <div class="project-stack" aria-label="Technologies used">
+              <span class="stack-tag">HTML5</span>
+              <span class="stack-tag">CSS3</span>
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">IndexedDB</span>
+              <span class="stack-tag">Canvas API</span>
+            </div>
+            <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View Sorting Visualizer on GitHub (opens in new tab)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </article>
 
+        </div>
       </div>
     </section>
   </main>
@@ -264,5 +293,53 @@
   <footer role="contentinfo">
     <p>© 2026 Saicharan S &mdash; SRM Institute of Science and Technology</p>
   </footer>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const cur = document.documentElement.getAttribute('data-theme');
+        btn.setAttribute('aria-label', cur === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        btn.addEventListener('click', () => {
+          const c = document.documentElement.getAttribute('data-theme');
+          const n = c === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', n);
+          localStorage.setItem('theme', n);
+          btn.setAttribute('aria-label', n === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        });
+      }
+      const ham = document.getElementById('nav-hamburger');
+      const drawer = document.getElementById('nav-drawer');
+      if (ham && drawer) {
+        ham.addEventListener('click', () => {
+          const exp = ham.getAttribute('aria-expanded') === 'true';
+          ham.setAttribute('aria-expanded', String(!exp));
+          ham.setAttribute('aria-label', exp ? 'Open navigation' : 'Close navigation');
+          drawer.classList.toggle('is-open', !exp);
+        });
+        drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          ham.setAttribute('aria-expanded','false');
+          ham.setAttribute('aria-label','Open navigation');
+          drawer.classList.remove('is-open');
+        }));
+        document.addEventListener('click', e => {
+          if (!ham.contains(e.target) && !drawer.contains(e.target)) {
+            ham.setAttribute('aria-expanded','false');
+            ham.setAttribute('aria-label','Open navigation');
+            drawer.classList.remove('is-open');
+          }
+        });
+      }
+      const revealEls = document.querySelectorAll('.reveal');
+      if (revealEls.length && 'IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+        revealEls.forEach(el => obs.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+    })();
+  </script>
 </body>
 </html>

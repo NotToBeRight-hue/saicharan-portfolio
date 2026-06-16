@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,110 +15,201 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* ---- HERO ---- */
     #hero {
-      min-height: calc(100vh - 5rem);
+      position: relative;
+      z-index: 1;
+      min-height: calc(100svh - var(--nav-height));
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-top: 2rem;
+      padding: var(--space-xl) var(--space-md);
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
+
+    @media (min-width: 768px)  { #hero { padding: var(--space-xl) var(--space-lg); } }
+    @media (min-width: 1024px) { #hero { padding: var(--space-2xl) var(--space-xl); } }
 
     .hero-tag {
       font-family: 'Space Mono', monospace;
-      font-size: .75rem;
+      font-size: var(--fs-xs);
       color: var(--accent2);
-      letter-spacing: .15em;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      opacity: 0;
+      animation: fadeSlideUp .6s .1s ease forwards;
+    }
+    .hero-tag::before {
+      content: '';
       display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent2);
+      opacity: .6;
     }
 
     .hero-name {
-      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-size: var(--fs-4xl);
       font-weight: 700;
       line-height: 1;
-      letter-spacing: -.03em;
-      margin-bottom: 1rem;
+      letter-spacing: -.04em;
+      margin-bottom: var(--space-md);
+      opacity: 0;
+      animation: fadeSlideUp .65s .2s ease forwards;
     }
-
     .hero-name span { color: var(--accent); }
 
     .hero-sub {
-      font-size: 1.1rem;
+      font-size: var(--fs-lg);
       color: var(--muted);
       font-weight: 300;
-      max-width: 520px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
+      max-width: 500px;
+      line-height: 1.85;
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      animation: fadeSlideUp .65s .35s ease forwards;
     }
 
     .cta-row {
       display: flex;
-      gap: 1rem;
+      gap: var(--space-sm);
       flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeSlideUp .65s .5s ease forwards;
     }
 
     .scroll-hint {
-      margin-top: 5rem;
+      margin-top: var(--space-2xl);
       display: flex;
       align-items: center;
-      gap: .75rem;
+      gap: var(--space-sm);
       color: var(--muted);
-      font-size: .75rem;
+      font-size: var(--fs-xs);
       font-family: 'Space Mono', monospace;
+      opacity: 0;
+      animation: fadeSlideUp .65s .65s ease forwards;
     }
-
     .scroll-line {
       width: 40px;
       height: 1px;
       background: var(--muted);
+      animation: expandLine 1s .8s ease forwards;
+      transform-origin: left;
+      transform: scaleX(0);
     }
 
-    /* decorative grid bg */
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(124,110,245,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124,110,245,.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes expandLine {
+      to { transform: scaleX(1); }
     }
 
-    .glow {
-      position: fixed;
-      top: -20%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(124,110,245,.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+    /* ---- STAT STRIP ---- */
+    .stat-strip {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+    }
+    .stat-strip-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-md);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+    @media (min-width: 480px)  { .stat-strip-inner { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 768px)  { .stat-strip-inner { padding: var(--space-lg) var(--space-lg); } }
+    @media (min-width: 1024px) { .stat-strip-inner { padding: var(--space-lg) var(--space-xl); } }
+
+    .stat-item {
+      text-align: center;
+      padding: var(--space-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+    .stat-item:hover { border-color: var(--accent-border); box-shadow: var(--shadow-md); }
+
+    .stat-num {
+      font-size: var(--fs-2xl);
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      display: block;
+    }
+    .stat-label {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      margin-top: var(--space-xs);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      display: block;
     }
 
-    section { position: relative; z-index: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-tag, .hero-name, .hero-sub, .cta-row, .scroll-hint {
+        opacity: 1; animation: none;
+      }
+      .scroll-line { transform: scaleX(1); animation: none; }
+    }
   </style>
+  <script>
+    // Apply saved theme before paint
+    (function() {
+      const t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <div class="grid-bg" aria-hidden="true"></div>
-  <div class="glow" aria-hidden="true"></div>
+  <div class="glow"   aria-hidden="true"></div>
+  <div class="glow-2" aria-hidden="true"></div>
 
+  <!-- NAV -->
   <nav role="navigation" aria-label="Main navigation">
     <a href="index.html" class="logo" aria-label="Saicharan S — Home">S.SAICHARAN</a>
-    <ul class="nav-links" role="list">
-      <li><a href="index.html" aria-current="page">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        <li><a href="index.html"    aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button id="nav-hamburger" class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
+  <!-- MOBILE DRAWER -->
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
   <main id="main-content">
+
+    <!-- HERO -->
     <section id="hero" aria-labelledby="hero-heading">
-      <span class="hero-tag">Full Stack Developer &amp; CSE Student</span>
+      <span class="hero-tag" aria-label="Role">Full Stack Developer &amp; CSE Student</span>
       <h1 class="hero-name" id="hero-heading">
         Saicharan<br><span>Shanmugapriyan</span>
       </h1>
@@ -128,17 +219,93 @@
       </p>
       <div class="cta-row">
         <a href="projects.html" class="btn-primary">View My Projects</a>
-        <a href="contact.html" class="btn-outline">Get In Touch</a>
+        <a href="contact.html"  class="btn-outline">Get In Touch</a>
       </div>
       <div class="scroll-hint" aria-hidden="true">
         <span class="scroll-line"></span>
         <span>scroll to explore</span>
       </div>
     </section>
+
+    <!-- STAT STRIP -->
+    <div class="stat-strip" role="region" aria-label="Key stats">
+      <div class="stat-strip-inner">
+        <div class="stat-item reveal">
+          <span class="stat-num">8.71</span>
+          <span class="stat-label">CGPA</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Projects Built</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <span class="stat-num">2028</span>
+          <span class="stat-label">Graduation</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Curiosity</span>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer role="contentinfo">
     <p>© 2026 Saicharan S &mdash; SRM Institute of Science and Technology</p>
   </footer>
+
+  <script>
+    (function() {
+      // Theme
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const cur = document.documentElement.getAttribute('data-theme');
+          const next = cur === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        });
+        const cur = document.documentElement.getAttribute('data-theme');
+        btn.setAttribute('aria-label', cur === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+
+      // Hamburger
+      const ham = document.getElementById('nav-hamburger');
+      const drawer = document.getElementById('nav-drawer');
+      if (ham && drawer) {
+        ham.addEventListener('click', () => {
+          const expanded = ham.getAttribute('aria-expanded') === 'true';
+          ham.setAttribute('aria-expanded', String(!expanded));
+          ham.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+          drawer.classList.toggle('is-open', !expanded);
+        });
+        drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          ham.setAttribute('aria-expanded', 'false');
+          ham.setAttribute('aria-label', 'Open navigation');
+          drawer.classList.remove('is-open');
+        }));
+        document.addEventListener('click', (e) => {
+          if (!ham.contains(e.target) && !drawer.contains(e.target)) {
+            ham.setAttribute('aria-expanded', 'false');
+            ham.setAttribute('aria-label', 'Open navigation');
+            drawer.classList.remove('is-open');
+          }
+        });
+      }
+
+      // Scroll reveal
+      const revealEls = document.querySelectorAll('.reveal');
+      if (revealEls.length && 'IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+        revealEls.forEach(el => obs.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+    })();
+  </script>
 </body>
 </html>
