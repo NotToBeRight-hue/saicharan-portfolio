@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Saicharan S — B.Tech CSE student at SRM University. Full Stack Developer building practical web applications with Java, Python, and C++.">
+  <meta name="keywords" content="Saicharan, SRM University, CSE, Full Stack Developer, Java, Python, C++, portfolio">
+  <meta name="author" content="Saicharan S">
+  <meta property="og:title" content="Saicharan S | Portfolio">
+  <meta property="og:description" content="B.Tech CSE student at SRM University — building full stack projects with Java, Python and more.">
+  <meta property="og:type" content="website">
+  <title>Saicharan S | Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #hero {
+      min-height: calc(100vh - 5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 2rem;
+    }
+
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--accent2);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .scroll-hint {
+      margin-top: 5rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      color: var(--muted);
+      font-size: .75rem;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--muted);
+    }
+
+    /* decorative grid bg */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,110,245,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,110,245,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow {
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(124,110,245,.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    section { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="logo" aria-label="Saicharan S — Home">S.SAICHARAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <section id="hero" aria-labelledby="hero-heading">
+      <span class="hero-tag">Full Stack Developer &amp; CSE Student</span>
+      <h1 class="hero-name" id="hero-heading">
+        Saicharan<br><span>Shanmugapriyan</span>
+      </h1>
+      <p class="hero-sub">
+        B.Tech Computer Science student at SRM Institute of Science and Technology —
+        building practical full-stack applications and writing clean, purposeful code.
+      </p>
+      <div class="cta-row">
+        <a href="projects.html" class="btn-primary">View My Projects</a>
+        <a href="contact.html" class="btn-outline">Get In Touch</a>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-line"></span>
+        <span>scroll to explore</span>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2026 Saicharan S &mdash; SRM Institute of Science and Technology</p>
+  </footer>
+</body>
+</html>

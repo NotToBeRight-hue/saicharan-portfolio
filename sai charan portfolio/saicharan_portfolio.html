@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Saicharan S — B.Tech CSE student at SRM University. Full Stack Developer building practical web applications with Java, Python, and C++.">
+<meta name="keywords" content="Saicharan, SRM University, CSE, Full Stack Developer, Java, Python, C++, portfolio">
+<meta name="author" content="Saicharan S">
+<meta property="og:title" content="Saicharan S | Portfolio">
+<meta property="og:description" content="B.Tech CSE student at SRM University — building full stack projects with Java, Python and more.">
+<meta property="og:type" content="website">
+<title>Saicharan S | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--bg2:#111118;--bg3:#18181f;--card:#16151e;
+  --accent:#7c6ef5;--accent2:#4fd1c5;--text:#e8e6f0;--muted:#7a7890;
+  --border:#2a2838;--radius:8px;--radius-lg:12px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;line-height:1.6;overflow-x:hidden;min-height:100vh}
+
+/* SKIP LINK */
+.skip-link{position:absolute;top:-100%;left:1rem;background:var(--accent);color:#fff;padding:.5rem 1rem;border-radius:0 0 var(--radius) var(--radius);font-size:.875rem;font-weight:600;text-decoration:none;z-index:9999;transition:top .2s}
+.skip-link:focus{top:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 4rem;background:rgba(10,10,15,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Space Mono',monospace;font-size:.95rem;color:var(--accent);letter-spacing:.05em;text-decoration:none;cursor:pointer}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links button{background:none;border:none;color:var(--muted);font-family:'Sora',sans-serif;font-size:.875rem;letter-spacing:.04em;cursor:pointer;padding:.25rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-links button:hover,.nav-links button.active{color:var(--text);border-bottom-color:var(--accent)}
+.nav-links button:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+
+/* PAGES */
+.page{display:none;padding-top:5rem;animation:fadeIn .35s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+section{padding:4rem 4rem;max-width:1100px;margin:0 auto}
+
+/* LABELS & TITLES */
+.section-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;display:block}
+.section-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:700;letter-spacing:-.02em;margin-bottom:1.75rem;line-height:1.1}
+
+/* BUTTONS */
+.btn-primary{display:inline-block;padding:.75rem 2rem;background:var(--accent);color:#fff;border:2px solid var(--accent);border-radius:var(--radius);font-family:'Sora',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-primary:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+.btn-outline{display:inline-block;padding:.75rem 2rem;background:transparent;color:var(--text);border:2px solid var(--border);border-radius:var(--radius);font-family:'Sora',sans-serif;font-size:.9rem;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+/* FOOTER */
+footer{text-align:center;padding:2.5rem;color:var(--muted);font-size:.78rem;font-family:'Space Mono',monospace;border-top:1px solid var(--border);margin-top:1rem}
+
+/* ===== HOME ===== */
+#page-home .hero{min-height:calc(100vh - 5rem);display:flex;flex-direction:column;justify-content:center;padding:2rem 4rem 4rem;max-width:1100px;margin:0 auto;position:relative}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(124,110,245,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,110,245,.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.glow{position:fixed;top:-15%;right:-5%;width:700px;height:700px;background:radial-gradient(circle,rgba(124,110,245,.07) 0%,transparent 65%);pointer-events:none;z-index:0}
+.glow2{position:fixed;bottom:-10%;left:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(79,209,197,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+.hero{position:relative;z-index:1}
+.hero-tag{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:block}
+.hero-name{font-size:clamp(3rem,9vw,6.5rem);font-weight:700;line-height:1;letter-spacing:-.03em;margin-bottom:1rem}
+.hero-name span{color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--muted);font-weight:300;max-width:540px;line-height:1.85;margin-bottom:2.5rem}
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap}
+.scroll-hint{margin-top:5rem;display:flex;align-items:center;gap:.75rem;color:var(--muted);font-size:.75rem;font-family:'Space Mono',monospace}
+.scroll-line{width:40px;height:1px;background:var(--muted)}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start;margin-bottom:4rem}
+.about-text p{color:var(--muted);line-height:1.85;font-size:.95rem;margin-bottom:1.25rem}
+.about-text strong{color:var(--text)}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-top:2rem}
+.edu-card h3{font-size:1rem;font-weight:600;color:var(--accent);margin-bottom:.25rem}
+.edu-card p{font-size:.85rem;color:var(--muted);margin:0}
+.cgpa{font-family:'Space Mono',monospace;font-size:1.5rem;font-weight:700;color:var(--accent2);margin-top:.75rem}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center}
+.stat-num{font-size:2rem;font-weight:700;color:var(--accent);font-family:'Space Mono',monospace;display:block}
+.stat-label{font-size:.72rem;color:var(--muted);margin-top:.25rem;letter-spacing:.06em;text-transform:uppercase;display:block}
+
+/* SKILLS */
+.skills-divider{border:none;border-top:1px solid var(--border);margin:1rem 0 3rem}
+.skills-category{margin-bottom:2.5rem}
+.skills-category h3{font-size:.72rem;font-family:'Space Mono',monospace;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+.skills-category h3::after{content:'';flex:1;height:1px;background:var(--border)}
+.skills-row{display:flex;flex-wrap:wrap;gap:.65rem}
+.skill-pill{padding:.45rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:100px;font-size:.82rem;color:var(--text);font-family:'Space Mono',monospace;transition:border-color .2s,color .2s;cursor:default}
+.skill-pill:hover{border-color:var(--accent);color:var(--accent)}
+.skill-pill.lang{border-color:rgba(124,110,245,.4);color:var(--accent)}
+.skill-pill.fw{border-color:rgba(79,209,197,.3);color:var(--accent2)}
+
+/* ===== PROJECTS ===== */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem;margin-top:1rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;transition:border-color .3s,transform .3s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s}
+.project-card:hover{border-color:var(--accent);transform:translateY(-5px)}
+.project-card:hover::before{opacity:1}
+.project-num{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem}
+.project-name{font-size:1.3rem;font-weight:700;margin-bottom:.75rem;color:var(--text)}
+.project-desc{font-size:.875rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem;flex:1}
+.project-highlights{list-style:none;margin-bottom:1.5rem}
+.project-highlights li{font-size:.82rem;color:var(--muted);padding:.3rem 0 .3rem 1rem;position:relative}
+.project-highlights li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+.project-stack{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto}
+.stack-tag{font-size:.7rem;padding:.3rem .8rem;background:rgba(124,110,245,.1);color:var(--accent);border-radius:100px;font-family:'Space Mono',monospace;border:1px solid rgba(124,110,245,.2)}
+.stack-tag.teal{background:rgba(79,209,197,.1);color:var(--accent2);border-color:rgba(79,209,197,.2)}
+.github-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.25rem;padding:.5rem 1rem;background:transparent;border:1px solid var(--border);border-radius:var(--radius);color:var(--muted);text-decoration:none;font-size:.8rem;font-family:'Space Mono',monospace;transition:border-color .2s,color .2s;cursor:pointer}
+.github-link:hover{border-color:var(--accent);color:var(--accent)}
+.github-link svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:start}
+.contact-links{display:flex;flex-direction:column;gap:1rem}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);text-decoration:none;color:var(--text);transition:border-color .2s,transform .2s}
+.contact-link:hover{border-color:var(--accent);transform:translateX(4px)}
+.contact-icon{width:40px;height:40px;border-radius:var(--radius);background:rgba(124,110,245,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon svg{width:18px;height:18px;fill:var(--accent)}
+.contact-link-label{font-size:.75rem;color:var(--muted)}
+.contact-link-val{font-size:.88rem;font-weight:500;margin-top:.1rem;word-break:break-all}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem}
+.form-card h2{font-size:1.25rem;font-weight:700;margin-bottom:1.5rem;color:var(--text)}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:.4rem;font-family:'Space Mono',monospace;letter-spacing:.04em}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.75rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:'Sora',sans-serif;font-size:.9rem;transition:border-color .2s,box-shadow .2s;outline:none}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,110,245,.15)}
+.form-group select{cursor:pointer}
+.form-group select option{background:var(--bg2)}
+.form-group textarea{resize:vertical;min-height:120px}
+.req{color:var(--accent);margin-left:2px}
+.form-hint{font-size:.73rem;color:var(--muted);margin-top:.3rem;display:block}
+.form-submit{width:100%;padding:.875rem;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-family:'Sora',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:.5rem}
+.form-submit:hover{opacity:.88}
+.form-submit:active{transform:scale(.99)}
+.form-submit:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+.success-msg{display:none;background:rgba(79,209,197,.1);border:1px solid rgba(79,209,197,.3);border-radius:var(--radius);padding:1rem;color:var(--accent2);font-size:.875rem;margin-top:1rem;text-align:center}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{gap:1rem}
+  #page-home .hero,section{padding-left:1.5rem;padding-right:1.5rem}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
+  .projects-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .nav-links{gap:.5rem}
+  .nav-links button{font-size:.75rem}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+<div class="glow2" aria-hidden="true"></div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <button class="logo" onclick="showPage('home')" aria-label="Saicharan S — Home">S.SAICHARAN</button>
+  <ul class="nav-links" role="list">
+    <li><button class="active" id="nav-home" onclick="showPage('home')">Home</button></li>
+    <li><button id="nav-about" onclick="showPage('about')">About</button></li>
+    <li><button id="nav-projects" onclick="showPage('projects')">Projects</button></li>
+    <li><button id="nav-contact" onclick="showPage('contact')">Contact</button></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active" role="region" aria-label="Home">
+  <div class="hero">
+    <span class="hero-tag">Full Stack Developer &amp; CSE Student</span>
+    <h1 class="hero-name">Saicharan<br><span>Shanmugapriyan</span></h1>
+    <p class="hero-sub">B.Tech Computer Science student at SRM Institute of Science and Technology — building practical full-stack applications and writing clean, purposeful code.</p>
+    <div class="cta-row">
+      <button class="btn-primary" onclick="showPage('projects')" aria-label="View my projects">View My Projects</button>
+      <button class="btn-outline" onclick="showPage('contact')" aria-label="Go to contact page">Get In Touch</button>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span class="scroll-line"></span>
+      <span>explore the portfolio</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT PAGE ===== -->
+<div id="page-about" class="page" role="region" aria-label="About">
+  <section aria-labelledby="about-heading">
+    <span class="section-label">01 — About Me</span>
+    <div class="about-grid">
+      <div class="about-text">
+        <h1 class="section-title" id="about-heading">Who I Am</h1>
+        <p>I'm <strong>Saicharan S</strong>, a B.Tech Computer Science &amp; Engineering student at <strong>SRM Institute of Science and Technology, Ramapuram</strong> (Batch 2024–2028). I'm a fresher passionate about building things that actually work and matter.</p>
+        <p>My primary focus is <strong>full-stack web development</strong> — from crafting clean, accessible frontends to building robust Java backends that power real features. I enjoy the entire journey from idea to deployed product.</p>
+        <p>Outside of code, I'm a <strong>horophile</strong> (yes, a watch nerd), love deep dives into philosophy, and enjoy collaborative projects with friends. I believe good software is as much about people as it is about code.</p>
+        <p>Currently open to <strong>internships and collaborations</strong> where I can apply my skills and grow fast.</p>
+        <div class="edu-card" role="region" aria-label="Education details">
+          <h3>SRM Institute of Science and Technology</h3>
+          <p>B.Tech — Computer Science &amp; Engineering | Ramapuram, Chennai</p>
+          <p style="margin-top:.5rem;font-size:.8rem;">Batch 2024 – 2028</p>
+          <div class="cgpa" aria-label="CGPA 8.71">8.71 CGPA</div>
+        </div>
+      </div>
+      <div>
+        <div class="stat-grid" role="list" aria-label="Key stats">
+          <div class="stat-card" role="listitem"><span class="stat-num">8.71</span><span class="stat-label">CGPA</span></div>
+          <div class="stat-card" role="listitem"><span class="stat-num">3</span><span class="stat-label">Projects Built</span></div>
+          <div class="stat-card" role="listitem"><span class="stat-num">2028</span><span class="stat-label">Graduation</span></div>
+          <div class="stat-card" role="listitem"><span class="stat-num">∞</span><span class="stat-label">Curiosity</span></div>
+        </div>
+      </div>
+    </div>
+    <hr class="skills-divider" aria-hidden="true">
+    <span class="section-label">02 — Tech Stack</span>
+    <h2 class="section-title" id="skills-heading">Skills &amp; Tools</h2>
+    <div class="skills-category">
+      <h3 id="lang-label">Languages</h3>
+      <div class="skills-row" role="list" aria-labelledby="lang-label">
+        <span class="skill-pill lang" role="listitem" tabindex="0">Java</span>
+        <span class="skill-pill lang" role="listitem" tabindex="0">Python</span>
+        <span class="skill-pill lang" role="listitem" tabindex="0">C++</span>
+        <span class="skill-pill lang" role="listitem" tabindex="0">JavaScript</span>
+        <span class="skill-pill lang" role="listitem" tabindex="0">HTML5</span>
+        <span class="skill-pill lang" role="listitem" tabindex="0">CSS3</span>
+        <span class="skill-pill lang" role="listitem" tabindex="0">SQL</span>
+      </div>
+    </div>
+    <div class="skills-category">
+      <h3 id="fw-label">Frameworks &amp; Libraries</h3>
+      <div class="skills-row" role="list" aria-labelledby="fw-label">
+        <span class="skill-pill fw" role="listitem" tabindex="0">Spring Boot</span>
+        <span class="skill-pill fw" role="listitem" tabindex="0">Java Servlets</span>
+        <span class="skill-pill fw" role="listitem" tabindex="0">JSP</span>
+        <span class="skill-pill fw" role="listitem" tabindex="0">REST APIs</span>
+      </div>
+    </div>
+    <div class="skills-category">
+      <h3 id="db-label">Databases</h3>
+      <div class="skills-row" role="list" aria-labelledby="db-label">
+        <span class="skill-pill" role="listitem" tabindex="0">MySQL</span>
+        <span class="skill-pill" role="listitem" tabindex="0">H2 Database</span>
+        <span class="skill-pill" role="listitem" tabindex="0">IndexedDB</span>
+      </div>
+    </div>
+    <div class="skills-category">
+      <h3 id="tools-label">Tools &amp; Platforms</h3>
+      <div class="skills-row" role="list" aria-labelledby="tools-label">
+        <span class="skill-pill" role="listitem" tabindex="0">Git</span>
+        <span class="skill-pill" role="listitem" tabindex="0">GitHub</span>
+        <span class="skill-pill" role="listitem" tabindex="0">Apache Tomcat</span>
+        <span class="skill-pill" role="listitem" tabindex="0">VS Code</span>
+        <span class="skill-pill" role="listitem" tabindex="0">IntelliJ IDEA</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PROJECTS PAGE ===== -->
+<div id="page-projects" class="page" role="region" aria-label="Projects">
+  <section aria-labelledby="projects-heading">
+    <span class="section-label">03 — Projects</span>
+    <h1 class="section-title" id="projects-heading">What I've Built</h1>
+    <div class="projects-grid">
+
+      <article class="project-card" aria-labelledby="proj1-name">
+        <p class="project-num">01 &mdash; Full Stack Web App</p>
+        <h2 class="project-name" id="proj1-name">SmartBite</h2>
+        <p class="project-desc">A smart canteen pre-ordering system that lets students browse the menu, place orders in advance, and skip the queue. Built end-to-end from HTML frontend to Java Servlet backend with a MySQL database.</p>
+        <ul class="project-highlights" aria-label="Key features">
+          <li>Student login &amp; order management</li>
+          <li>Real-time menu browsing interface</li>
+          <li>Order history &amp; status tracking</li>
+          <li>Java Servlets + JSP server-side rendering</li>
+        </ul>
+        <div class="project-stack" aria-label="Technologies used">
+          <span class="stack-tag">HTML/CSS/JS</span>
+          <span class="stack-tag">Java Servlets</span>
+          <span class="stack-tag">JSP</span>
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">Apache Tomcat</span>
+        </div>
+        <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View SmartBite on GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </article>
+
+      <article class="project-card" aria-labelledby="proj2-name">
+        <p class="project-num">02 &mdash; Game + AI Logic</p>
+        <h2 class="project-name" id="proj2-name">Word Chain Game</h2>
+        <p class="project-desc">An interactive word-chain game where you face off against an AI opponent. Features multiple difficulty levels, a persistent leaderboard, and a retro terminal-inspired UI — all powered by a Spring Boot backend.</p>
+        <ul class="project-highlights" aria-label="Key features">
+          <li>AI opponent with difficulty scaling</li>
+          <li>Persistent leaderboard via H2 database</li>
+          <li>Real-time turn-based game logic</li>
+          <li>Retro terminal aesthetic UI</li>
+        </ul>
+        <div class="project-stack" aria-label="Technologies used">
+          <span class="stack-tag teal">Spring Boot</span>
+          <span class="stack-tag teal">H2 Database</span>
+          <span class="stack-tag teal">REST API</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">CSS3</span>
+        </div>
+        <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View Word Chain Game on GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </article>
+
+      <article class="project-card" aria-labelledby="proj3-name">
+        <p class="project-num">03 &mdash; Visualizer Tool</p>
+        <h2 class="project-name" id="proj3-name">Sorting Algorithm Visualizer</h2>
+        <p class="project-desc">A self-contained visualizer for 6 classic sorting algorithms with live step-by-step animations, time &amp; space complexity badges, and persistent session stats — all packed into a single HTML file.</p>
+        <ul class="project-highlights" aria-label="Key features">
+          <li>Bubble, Selection, Insertion, Merge, Quick, Heap Sort</li>
+          <li>Live animated bar chart with color cues</li>
+          <li>Big-O complexity badges per algorithm</li>
+          <li>Persistent stats with IndexedDB</li>
+        </ul>
+        <div class="project-stack" aria-label="Technologies used">
+          <span class="stack-tag">HTML5</span>
+          <span class="stack-tag">CSS3</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">IndexedDB</span>
+          <span class="stack-tag">Canvas API</span>
+        </div>
+        <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View Sorting Visualizer on GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </article>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div id="page-contact" class="page" role="region" aria-label="Contact">
+  <section aria-labelledby="contact-heading">
+    <span class="section-label">04 — Contact</span>
+    <h1 class="section-title" id="contact-heading">Let's Connect</h1>
+    <div class="contact-grid">
+      <nav class="contact-links" aria-label="Contact channels">
+        <a href="mailto:sai18charan09@gmail.com" class="contact-link" aria-label="Send email">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">sai18charan09@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+919150503335" class="contact-link" aria-label="Call phone">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C9.61 21 3 14.39 3 6.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-val">+91 9150503335</div>
+          </div>
+        </a>
+        <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub profile">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-val">Saicharan180906</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/saicharan-shanmugapriyan-915534328" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn profile">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">saicharan-shanmugapriyan</div>
+          </div>
+        </a>
+      </nav>
+
+      <div class="form-card" role="region" aria-label="Contact form">
+        <h2>Send a Message</h2>
+        <form id="contact-form" novalidate aria-label="Contact form">
+          <div class="form-group">
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" aria-required="true" aria-describedby="name-hint">
+            <span id="name-hint" class="form-hint">How should I address you?</span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-required="true">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">Select a topic</option>
+              <option value="internship">Internship Opportunity</option>
+              <option value="collaboration">Project Collaboration</option>
+              <option value="freelance">Freelance Work</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" placeholder="Tell me what you have in mind..." required aria-required="true" minlength="10"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+          <div class="success-msg" id="success-msg" role="alert" aria-live="polite">✓ Message sent! I'll get back to you soon.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer role="contentinfo">
+  <p>© 2026 Saicharan S &mdash; SRM Institute of Science and Technology, Ramapuram</p>
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+const form = document.getElementById('contact-form');
+const successMsg = document.getElementById('success-msg');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name');
+  const email = document.getElementById('email');
+  const message = document.getElementById('message');
+  let valid = true;
+  [name, email, message].forEach(f => {
+    if (!f.validity.valid) {
+      f.style.borderColor = '#e05252';
+      f.setAttribute('aria-invalid', 'true');
+      valid = false;
+    } else {
+      f.style.borderColor = '';
+      f.removeAttribute('aria-invalid');
+    }
+  });
+  if (!valid) {
+    const first = form.querySelector('[aria-invalid="true"]');
+    if (first) first.focus();
+    return;
+  }
+  successMsg.style.display = 'block';
+  form.reset();
+  setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+});
+['name','email','message'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function() {
+    if (this.validity.valid) { this.style.borderColor = ''; this.removeAttribute('aria-invalid'); }
+  });
+});
+</script>
+</body>
+</html>

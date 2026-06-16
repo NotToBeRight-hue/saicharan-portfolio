@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Saicharan S — reach out via email, phone, GitHub, or LinkedIn. Open to internships, collaborations, and interesting projects.">
+  <meta name="keywords" content="Saicharan contact, email, GitHub, LinkedIn, SRM CSE student">
+  <meta name="author" content="Saicharan S">
+  <title>Saicharan S | Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* LINKS COLUMN */
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .2s, transform .2s;
+    }
+
+    .contact-link:hover  { border-color: var(--accent); transform: translateX(4px); }
+    .contact-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-lg);
+    }
+
+    .contact-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--radius);
+      background: rgba(124,110,245,.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg { width: 18px; height: 18px; fill: var(--accent); }
+
+    .contact-link-label { font-size: .75rem; color: var(--muted); }
+    .contact-link-val   { font-size: .9rem; font-weight: 500; margin-top: .1rem; }
+
+    /* FORM COLUMN */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .form-card h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: .4rem;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: .04em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: .75rem 1rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Sora', sans-serif;
+      font-size: .9rem;
+      transition: border-color .2s;
+      outline: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--muted);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124,110,245,.15);
+    }
+
+    .form-group select option {
+      background: var(--bg2);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group input:invalid:not(:placeholder-shown),
+    .form-group textarea:invalid:not(:placeholder-shown) {
+      border-color: #e05252;
+    }
+
+    .required-mark {
+      color: var(--accent);
+      margin-left: 2px;
+      aria-hidden: "true";
+    }
+
+    .form-hint {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .3rem;
+      display: block;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: .875rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Sora', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      margin-top: .5rem;
+    }
+
+    .form-submit:hover   { opacity: .88; }
+    .form-submit:active  { transform: scale(.99); }
+    .form-submit:focus-visible {
+      outline: 3px solid var(--accent2);
+      outline-offset: 3px;
+    }
+
+    .success-msg {
+      display: none;
+      background: rgba(79,209,197,.1);
+      border: 1px solid rgba(79,209,197,.3);
+      border-radius: var(--radius);
+      padding: 1rem;
+      color: var(--accent2);
+      font-size: .875rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="logo" aria-label="Saicharan S — Home">S.SAICHARAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <section id="contact" aria-labelledby="contact-heading">
+      <span class="section-label">04 — Contact</span>
+      <h1 class="section-title" id="contact-heading">Let's Connect</h1>
+
+      <div class="contact-grid">
+
+        <!-- CONTACT LINKS -->
+        <nav class="contact-links" aria-label="Contact channels">
+          <a href="mailto:sai18charan09@gmail.com" class="contact-link" aria-label="Send email to Saicharan at sai18charan09@gmail.com">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-val">sai18charan09@gmail.com</div>
+            </div>
+          </a>
+
+          <a href="tel:+919150503335" class="contact-link" aria-label="Call Saicharan at +91 9150503335">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C9.61 21 3 14.39 3 6.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label">Phone</div>
+              <div class="contact-link-val">+91 9150503335</div>
+            </div>
+          </a>
+
+          <a href="https://github.com/Saicharan180906" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Visit GitHub profile (opens in new tab)">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-val">Saicharan180906</div>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/saicharan-shanmugapriyan-915534328" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Visit LinkedIn profile (opens in new tab)">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 .77 23.23.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-val">saicharan-shanmugapriyan</div>
+            </div>
+          </a>
+        </nav>
+
+        <!-- CONTACT FORM -->
+        <div class="form-card" role="region" aria-label="Contact form">
+          <h2>Send a Message</h2>
+          <form
+            id="contact-form"
+            action="mailto:sai18charan09@gmail.com"
+            method="post"
+            enctype="text/plain"
+            novalidate
+            aria-label="Contact form"
+          >
+            <div class="form-group">
+              <label for="name">
+                Name <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your full name"
+                required
+                autocomplete="name"
+                aria-required="true"
+                aria-describedby="name-hint"
+              >
+              <span id="name-hint" class="form-hint">How should I address you?</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">
+                Email <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+                autocomplete="email"
+                aria-required="true"
+                aria-describedby="email-hint"
+              >
+              <span id="email-hint" class="form-hint">I'll reply to this address.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" aria-label="Message subject">
+                <option value="">Select a topic</option>
+                <option value="internship">Internship Opportunity</option>
+                <option value="collaboration">Project Collaboration</option>
+                <option value="freelance">Freelance Work</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">
+                Message <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell me what you have in mind..."
+                required
+                aria-required="true"
+                aria-describedby="msg-hint"
+                minlength="10"
+              ></textarea>
+              <span id="msg-hint" class="form-hint">Minimum 10 characters.</span>
+            </div>
+
+            <button type="submit" class="form-submit" aria-label="Send message">
+              Send Message
+            </button>
+
+            <div class="success-msg" id="success-msg" role="alert" aria-live="polite">
+              ✓ Message sent! I'll get back to you soon.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2026 Saicharan S &mdash; SRM Institute of Science and Technology</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('success-msg');
+
+    form.addEventListener('submit', function(e) {
+      // Basic client-side validation
+      const name    = document.getElementById('name');
+      const email   = document.getElementById('email');
+      const message = document.getElementById('message');
+
+      let valid = true;
+
+      [name, email, message].forEach(field => {
+        if (!field.validity.valid) {
+          field.style.borderColor = '#e05252';
+          field.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else {
+          field.style.borderColor = '';
+          field.removeAttribute('aria-invalid');
+        }
+      });
+
+      if (!valid) {
+        e.preventDefault();
+        // Focus the first invalid field
+        const firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Show success message
+      successMsg.style.display = 'block';
+    });
+
+    // Live validation on input
+    ['name', 'email', 'message'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', function() {
+        if (this.validity.valid) {
+          this.style.borderColor = '';
+          this.removeAttribute('aria-invalid');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
